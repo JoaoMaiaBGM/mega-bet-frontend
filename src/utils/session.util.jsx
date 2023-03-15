@@ -7,7 +7,6 @@ export async function loginUser(data) {
     const response = await apiUser.post("login/", data);
     responseLogin.token = response.data;
     responseLogin.message = "success";
-    apiUser.defaults.headers.common["Authorization"] = `Bearer ${token}`;
     return responseLogin;
   } catch (err) {
     if (err instanceof AxiosError) {

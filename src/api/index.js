@@ -3,9 +3,9 @@ import axios from "axios";
 const baseURL = "https://megabet-03ra.onrender.com";
 
 export const apiUser = axios.create({
-  baseURL: baseURL + "/users",
+  baseURL: baseURL + "/api/users",
 });
 
 export const apiBet = axios.create({
-  baseURL: baseURL + "/bets",
+  baseURL: baseURL + "/api/bets/",
 });

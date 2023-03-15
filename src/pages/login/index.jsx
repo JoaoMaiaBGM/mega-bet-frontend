@@ -49,8 +49,9 @@ export const Login = () => {
           className="form"
           onSubmit={handleSubmit(async (data) => {
             const response = await loginUser(data);
+            console.log(response);
             if (response?.message == "success") {
-              localStorage.setItem("$TOKEN", response.token);
+              localStorage.setItem("$TOKEN", response.token.refresh);
               isValid &&
                 toast({
                   position: "top-right",
