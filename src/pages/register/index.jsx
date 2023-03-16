@@ -107,15 +107,6 @@ export const Register = () => {
                   Enviar
                 </Button>
               </Stack>
-
-              <Stack pt={6}>
-                <Text align={"center"}>
-                  Já tem cadastro?{" "}
-                  <Link color={"blue.400"} onClick={() => navigate("/login")}>
-                    Login
-                  </Link>
-                </Text>
-              </Stack>
             </Stack>
           </Box>
         </Stack>
