@@ -4,8 +4,13 @@ import { AxiosError } from "axios";
 export async function handleBet() {
   let betResponse = { data: {}, message: "" };
   try {
-    const response = await apiBet.post("", _);
-    betResponse.data = response.data.numbers;
+    const token = localStorage.getItem("$TOKEN");
+    if (token) {
+      apiBet.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+    }
+
+    const response = await apiBet.post(``, {});
+    betResponse.data = response.data;
     betResponse.message = "success";
     return betResponse;
   } catch (error) {

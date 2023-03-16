@@ -1,4 +1,3 @@
-import { useNavigate } from "react-router-dom";
 import { Footer } from "../../components/footer";
 import { Header } from "../../components/header";
 import {
@@ -14,76 +13,72 @@ import {
   useColorModeValue,
 } from "@chakra-ui/react";
 import { FaCheckCircle } from "react-icons/fa";
+import { handleBet } from "../../utils/bet.util";
+import { useContext } from "react";
+import { ProfileContext } from "../../contexts/user.context";
 
-const options = {
-  id: 1,
-  numeros: [32, 48, 54, 26, 27, 30],
-  usuario: "João",
-  criadoEm: "2023-01-15",
-};
-
-function handleNumber() {
-  options.numeros.map((num) => {
-    return num;
-  });
-}
-
-const PackageTier = ({ options, checked = false }) => {
-  const colorTextLight = checked ? "white" : "purple.600";
-  const bgColorLight = checked ? "purple.400" : "gray.300";
-
-  const colorTextDark = checked ? "white" : "purple.500";
-  const bgColorDark = checked ? "purple.400" : "gray.300";
+const PackageTier = () => {
+  const { bet, setBet } = useContext(ProfileContext);
 
   return (
-    <Stack
-      p={3}
-      py={3}
-      justifyContent={{
-        base: "flex-start",
-        md: "space-between",
+    <form
+      onSubmit={async (eve) => {
+        eve.preventDefault();
+        const response = await handleBet();
+        if (response.message == "success") {
+          setBet(response.data);
+        }
       }}
-      direction={{
-        base: "column",
-        md: "row",
-      }}
-      alignItems={{ md: "center" }}
     >
-      <Heading
-        size={"md"}
-        direction={{ base: "column", md: "row" }}
-        textAlign={"center"}
+      <Stack
+        p={3}
+        py={3}
+        justifyContent={{
+          base: "flex-start",
+          md: "space-between",
+        }}
+        direction={{
+          base: "column",
+          md: "row",
+        }}
+        alignItems={{ md: "center" }}
       >
-        Usuário:
-        <Text fontSize={"md"}>{options.usuario}</Text>
-      </Heading>
+        <Heading
+          size={"md"}
+          direction={{ base: "column", md: "row" }}
+          textAlign={"center"}
+        >
+          Usuário:
+          <Text fontSize={"md"}>{bet.user}</Text>
+        </Heading>
 
-      <List spacing={4} textAlign="center" fontSize={"larger"}>
-        {options.numeros.map((num, id) => (
-          <ListItem key={id}>
-            <ListIcon as={FaCheckCircle} color="green.500" />
-            {num}
-          </ListItem>
-        ))}
-      </List>
+        <List spacing={4} textAlign="center" fontSize={"larger"}>
+          {bet.numbers.map((num, id) => (
+            <ListItem key={id}>
+              <ListIcon as={FaCheckCircle} color="green.500" />
+              {num}
+            </ListItem>
+          ))}
+        </List>
 
-      <Heading
-        size={"md"}
-        direction={{ base: "column", md: "row" }}
-        textAlign={"center"}
-      >
-        Data:
-        <Text fontSize={"md"}>{options.criadoEm}</Text>
-      </Heading>
-      <Button
-        size="md"
-        color={useColorModeValue(colorTextLight, colorTextDark)}
-        bgColor={useColorModeValue(bgColorLight, bgColorDark)}
-        onClick={() => handleNumber()}
-      >
-        Gerar
-      </Button>
-    </Stack>
+        <Heading
+          size={"md"}
+          direction={{ base: "column", md: "row" }}
+          textAlign={"center"}
+        >
+          Data:
+          <Text fontSize={"md"}>{bet.createdAt}</Text>
+        </Heading>
+        <Button
+          size="md"
+          color={useColorModeValue("purple.600", "colorTextDark")}
+          bgColor={useColorModeValue("gray.300", "gray.300")}
+          type={"submit"}
+        >
+          Gerar
+        </Button>
+      </Stack>
+    </form>
   );
 };
 
@@ -129,7 +124,7 @@ export const Home = () => {
             </Stack>
           </Stack>
           <Divider />
-          <PackageTier options={options} />
+          <PackageTier />
           <Divider />
         </Stack>
       </Box>
