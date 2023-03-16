@@ -4,9 +4,10 @@ export const ProfileContext = createContext();
 
 export const ProfileProvider = (props) => {
   const [profile, setProfile] = useState({});
+  const [bet, setBet] = useState({});
 
   return (
-    <ProfileContext.Provider value={{ profile, setProfile }}>
+    <ProfileContext.Provider value={{ profile, setProfile, bet, setBet }}>
       {props.children}
     </ProfileContext.Provider>
   );
