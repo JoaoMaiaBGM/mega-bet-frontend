@@ -2,7 +2,7 @@ import { AxiosError } from "axios";
 import { apiUser } from "../api";
 
 export async function loginUser(data) {
-  let responseLogin = { token: "", message: "" };
+  let responseLogin = { token: "", message: "", data: {} };
   try {
     const response = await apiUser.post("login/", data);
     responseLogin.token = response.data;
@@ -14,4 +14,8 @@ export async function loginUser(data) {
       return responseLogin;
     }
   }
+}
+
+export function handleLogout() {
+  localStorage.clear();
 }

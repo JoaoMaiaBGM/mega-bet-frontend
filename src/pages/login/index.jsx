@@ -49,26 +49,25 @@ export const Login = () => {
           className="form"
           onSubmit={handleSubmit(async (data) => {
             const response = await loginUser(data);
-            console.log(response);
             if (response?.message == "success") {
-              localStorage.setItem("$TOKEN", response.token.refresh);
+              localStorage.setItem("$TOKEN", response.token.access);
               isValid &&
                 toast({
-                  position: "top-right",
+                  position: "top",
                   title: "Logado com sucesso!",
                   status: "success",
-                  duration: 4000,
+                  duration: 2000,
                   isClosable: true,
                 });
               navigate("/home");
             }
             if (response?.message == "error") {
               toast({
-                position: "top-right",
+                position: "top",
                 title: "Email ou senha incorretos.",
                 description: "Por favor, revise os dados.",
                 status: "error",
-                duration: 4000,
+                duration: 2000,
                 isClosable: true,
               });
             }

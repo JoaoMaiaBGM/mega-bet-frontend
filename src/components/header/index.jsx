@@ -14,9 +14,24 @@ import {
 } from "@chakra-ui/breadcrumb";
 import { ChevronRightIcon } from "@chakra-ui/icons";
 import { useNavigate } from "react-router-dom";
+import { useContext, useEffect } from "react";
+import { ProfileContext } from "../../contexts/user.context";
+import { getSpecificUserToken } from "../../utils/user.util";
+import { MenuProfile } from "../menuProfile";
 
 export function Header() {
   const navigate = useNavigate();
+  const { profile, setProfile } = useContext(ProfileContext);
+
+  useEffect(() => {
+    async function getProfileToken() {
+      const response = await getSpecificUserToken();
+      if (response?.message == "success") {
+        setProfile(response.data.results);
+      }
+    }
+    getProfileToken();
+  }, []);
 
   return (
     <Box
@@ -87,43 +102,47 @@ export function Header() {
           </Flex>
         </Flex>
 
-        <Stack
-          className="navButtons"
-          flex={{ base: 1, md: 0 }}
-          justify={"flex-end"}
-          direction={"row"}
-          spacing={6}
-        >
-          <Button
-            className="btnSignIn"
-            as={"a"}
-            fontSize={"sm"}
-            fontWeight={400}
-            variant={"link"}
-            onClick={() => navigate("/login")}
-            cursor={"pointer"}
+        {profile.length > 0 ? (
+          <MenuProfile />
+        ) : (
+          <Stack
+            className="navButtons"
+            flex={{ base: 1, md: 0 }}
+            justify={"flex-end"}
+            direction={"row"}
+            spacing={6}
           >
-            Sign In
-          </Button>
+            <Button
+              className="btnSignIn"
+              as={"a"}
+              fontSize={"sm"}
+              fontWeight={400}
+              variant={"link"}
+              onClick={() => navigate("/login")}
+              cursor={"pointer"}
+            >
+              Login
+            </Button>
 
-          <Button
-            className="btnSignUp"
-            as={"a"}
-            display={"flex"}
-            alignItems={"center"}
-            fontSize={"sm"}
-            fontWeight={600}
-            color={"white"}
-            bg={"blue.600"}
-            _hover={{
-              bg: "blue.300",
-            }}
-            onClick={() => navigate("/register")}
-            cursor={"pointer"}
-          >
-            Sign Up
-          </Button>
-        </Stack>
+            <Button
+              className="btnSignUp"
+              as={"a"}
+              display={"flex"}
+              alignItems={"center"}
+              fontSize={"sm"}
+              fontWeight={600}
+              color={"white"}
+              bg={"blue.600"}
+              _hover={{
+                bg: "blue.300",
+              }}
+              onClick={() => navigate("/register")}
+              cursor={"pointer"}
+            >
+              Cadastrar
+            </Button>
+          </Stack>
+        )}
       </Flex>
     </Box>
   );
