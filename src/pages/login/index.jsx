@@ -75,12 +75,13 @@ export const Login = () => {
         >
           <Stack spacing={8} mx={"auto"} maxW={"lg"} py={12} px={6}>
             <Stack align={"center"}>
-              <Heading fontSize={"4xl"}>Faça login na sua conta</Heading>
+              <Heading fontSize={"4xl"} textAlign={"center"}>
+                Faça login na sua conta
+              </Heading>
               <BsShieldLockFill size={40} />
             </Stack>
 
             <Box
-              h={"sm"}
               rounded={"lg"}
               bg={useColorModeValue("white", "gray.700")}
               boxShadow={"lg"}
@@ -137,22 +138,6 @@ export const Login = () => {
                     Login
                   </Button>
                 </Stack>
-              </Stack>
-              <Stack
-                className="register"
-                direction={{ base: "column", sm: "row" }}
-                align={"flex-end"}
-                justify={"space-between"}
-              >
-                <Text>Ainda não possui conta?</Text>
-
-                <Link
-                  fontSize={19}
-                  color={"blue.400"}
-                  onClick={() => navigate("/register")}
-                >
-                  Cadastrar
-                </Link>
               </Stack>
             </Box>
           </Stack>

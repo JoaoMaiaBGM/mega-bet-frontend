@@ -6,7 +6,7 @@ import { ProfileProvider } from "./contexts/user.context";
 function App() {
   return (
     <ProfileProvider>
-      <RouterProvider router={Route} />;
+      <RouterProvider router={Route} />
     </ProfileProvider>
   );
 }
