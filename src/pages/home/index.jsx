@@ -25,7 +25,7 @@ const PackageTier = () => {
       onSubmit={async (eve) => {
         eve.preventDefault();
         const response = await handleBet();
-        if (response.message == "success") {
+        if (response?.message == "success") {
           setBet(response.data);
         }
       }}
@@ -51,15 +51,18 @@ const PackageTier = () => {
           Usuário:
           <Text fontSize={"md"}>{bet.user}</Text>
         </Heading>
-
-        <List spacing={4} textAlign="center" fontSize={"larger"}>
-          {bet.numbers.map((num, id) => (
-            <ListItem key={id}>
-              <ListIcon as={FaCheckCircle} color="green.500" />
-              {num}
-            </ListItem>
-          ))}
-        </List>
+        {bet === false ? (
+          <Text>Você ainda não gerou os números</Text>
+        ) : (
+          <List spacing={4} textAlign="center" fontSize={"larger"}>
+            {bet.numbers.map((num, id) => (
+              <ListItem key={id}>
+                <ListIcon as={FaCheckCircle} color="green.500" />
+                {num}
+              </ListItem>
+            ))}
+          </List>
+        )}
 
         <Heading
           size={"md"}
