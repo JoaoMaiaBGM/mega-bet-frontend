@@ -19,3 +19,18 @@ export async function getSpecificUserToken() {
     }
   }
 }
+
+export async function userRegister(data) {
+  let responseRegister = { data: {}, message: "" };
+  try {
+    const response = await apiUser.post("", data);
+    responseRegister.data = response.data;
+    responseRegister.message = "success";
+    return responseRegister;
+  } catch (error) {
+    if (error instanceof AxiosError) {
+      responseRegister.message = "error";
+      return responseRegister;
+    }
+  }
+}
