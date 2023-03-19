@@ -46,7 +46,8 @@ const SocialButton = ({ children, label, href, target }) => {
       justifyContent={"center"}
       transition={"background 0.3s ease"}
       _hover={{
-        bg: useColorModeValue("blackAlpha.200", "whiteAlpha.200"),
+        bg: "blue.500",
+        color: useColorModeValue("white", "gray.700"),
       }}
       target={target}
     >
