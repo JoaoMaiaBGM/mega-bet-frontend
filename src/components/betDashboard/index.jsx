@@ -2,7 +2,6 @@ import {
   Button,
   Heading,
   List,
-  Divider,
   ListItem,
   Stack,
   Text,
@@ -26,13 +25,10 @@ export const BetsDashboard = () => {
         }
       }}
     >
-      <Divider width={"350px"} margin={"0 auto"} />
-
       <Flex
         className={"betContainer"}
         w={"350px"}
         h={"350px"}
-        m={"2em auto"}
         boxShadow={"dark-lg"}
         rounded={"lg"}
         bg={useColorModeValue("white", "gray.800")}
@@ -56,10 +52,20 @@ export const BetsDashboard = () => {
                 justifyContent={"space-between"}
                 spacing={4}
                 textAlign="center"
-                fontSize={"2xl"}
+                fontSize={"1xl"}
               >
                 {bet.numbers.map((num, id) => (
-                  <ListItem key={id}>{num}</ListItem>
+                  <Flex
+                    key={id}
+                    width={"30px"}
+                    height={"30px"}
+                    rounded={"50%"}
+                    bg={"gray.300"}
+                    alignItems={"center"}
+                    justifyContent={"center"}
+                  >
+                    <ListItem>{num}</ListItem>
+                  </Flex>
                 ))}
               </List>
             </>
@@ -138,8 +144,6 @@ export const BetsDashboard = () => {
           Gerar
         </Button>
       </Flex>
-
-      <Divider width={"350px"} margin={"1em auto"} />
     </form>
   );
 };

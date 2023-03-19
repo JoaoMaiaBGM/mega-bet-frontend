@@ -39,12 +39,7 @@ export const Login = () => {
   return (
     <>
       <Header />
-      <Flex
-        minH={"100vh"}
-        align={"center"}
-        justify={"center"}
-        bg={useColorModeValue("gray.50", "gray.800")}
-      >
+      <Flex minH={"100vh"} align={"center"} justify={"center"} bg={"gray.100"}>
         <form
           className="form"
           onSubmit={handleSubmit(async (data) => {
@@ -75,10 +70,14 @@ export const Login = () => {
         >
           <Stack spacing={8} mx={"auto"} maxW={"lg"} py={12} px={6}>
             <Stack align={"center"}>
-              <Heading fontSize={"4xl"} textAlign={"center"}>
+              <Heading
+                fontSize={"4xl"}
+                textAlign={"center"}
+                color={"blackAlpha.800"}
+              >
                 Faça login na sua conta
               </Heading>
-              <BsShieldLockFill size={40} />
+              <BsShieldLockFill size={40} color={"black"} />
             </Stack>
 
             <Box
@@ -128,10 +127,13 @@ export const Login = () => {
                     <Link color={"gray.500"}>Esqueci minha senha</Link>
                   </Stack>
                   <Button
-                    bg={"blue.400"}
+                    bg={useColorModeValue("blue.600", "gray.900")}
                     color={"white"}
+                    rounded={"md"}
                     _hover={{
-                      bg: "blue.500",
+                      boxShadow: "lg",
+                      bg: "blue.400",
+                      transition: "0.4s",
                     }}
                     type="submit"
                   >

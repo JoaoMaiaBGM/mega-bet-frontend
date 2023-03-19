@@ -39,12 +39,7 @@ export const Register = () => {
   return (
     <>
       <Header />
-      <Flex
-        minH={"100vh"}
-        align={"start"}
-        justify={"center"}
-        bg={useColorModeValue("gray.50", "gray.800")}
-      >
+      <Flex minH={"100vh"} align={"start"} justify={"center"} bg={"gray.100"}>
         <Stack spacing={8} mx={"auto"} maxW={"lg"} py={12} px={6}>
           <form
             className="registerForm"
@@ -72,7 +67,11 @@ export const Register = () => {
             })}
           >
             <Stack align={"center"}>
-              <Heading fontSize={"4xl"} textAlign={"center"}>
+              <Heading
+                fontSize={"4xl"}
+                textAlign={"center"}
+                color={"blackAlpha.800"}
+              >
                 Cadastro
               </Heading>
             </Stack>
@@ -181,10 +180,10 @@ export const Register = () => {
                 <Stack spacing={10} pt={2}>
                   <Button
                     size="lg"
-                    bg={"blue.400"}
+                    bg={"blue.600"}
                     color={"white"}
                     _hover={{
-                      bg: "blue.700",
+                      bg: "blue.400",
                     }}
                     type="submit"
                   >
