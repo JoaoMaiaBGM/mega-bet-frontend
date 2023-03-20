@@ -27,7 +27,7 @@ export function Header() {
     async function getProfileToken() {
       const response = await getSpecificUserToken();
       if (response?.message == "success") {
-        setProfile(response.data.results);
+        setProfile(response.data);
       }
     }
     getProfileToken();
@@ -66,10 +66,7 @@ export function Header() {
           </Text>
 
           <Flex display={{ base: "none", md: "flex" }} ml={100}>
-            <Flex
-              className="navContainer"
-              justify={{ base: "center", md: "start" }}
-            >
+            <Flex className="nav" justify={{ base: "center", md: "start" }}>
               <Breadcrumb
                 spacing="8px"
                 separator={<ChevronRightIcon color="gray.500" />}

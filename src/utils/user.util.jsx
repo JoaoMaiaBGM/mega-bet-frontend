@@ -5,10 +5,16 @@ export async function getSpecificUserToken() {
   let responseSpecificGet = { data: {}, message: "" };
   try {
     const token = localStorage.getItem("$TOKEN");
+    const userData = localStorage.getItem("$DATA");
+
     const response = await apiUser.get(``, {
       headers: { Authorization: `Bearer ${token}` },
     });
-    responseSpecificGet.data = response.data;
+
+    const listUsers = response.data.results;
+    const user = listUsers.filter((user) => user.username == userData);
+
+    responseSpecificGet.data = user;
     responseSpecificGet.message = "success";
     return responseSpecificGet;
   } catch (err) {

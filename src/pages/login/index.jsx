@@ -24,6 +24,7 @@ import { loginSchema } from "../../schemas/session.schema";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { loginUser } from "../../utils/session.util";
+import { getSpecificUserToken } from "../../utils/user.util";
 
 export const Login = () => {
   const navigate = useNavigate();
@@ -46,6 +47,7 @@ export const Login = () => {
             const response = await loginUser(data);
             if (response?.message == "success") {
               localStorage.setItem("$TOKEN", response.token.access);
+              localStorage.setItem("$DATA", data.username);
               isValid &&
                 toast({
                   position: "top",
