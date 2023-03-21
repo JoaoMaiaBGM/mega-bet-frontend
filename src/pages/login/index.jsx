@@ -24,6 +24,7 @@ import { loginSchema } from "../../schemas/session.schema";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { loginUser } from "../../utils/session.util";
+import { getSpecificUserToken } from "../../utils/user.util";
 
 export const Login = () => {
   const navigate = useNavigate();
@@ -39,36 +40,31 @@ export const Login = () => {
   return (
     <>
       <Header />
-      <Flex
-        minH={"100vh"}
-        align={"center"}
-        justify={"center"}
-        bg={useColorModeValue("gray.50", "gray.800")}
-      >
+      <Flex minH={"100vh"} align={"center"} justify={"center"} bg={"gray.100"}>
         <form
           className="form"
           onSubmit={handleSubmit(async (data) => {
             const response = await loginUser(data);
-            console.log(response);
             if (response?.message == "success") {
-              localStorage.setItem("$TOKEN", response.token.refresh);
+              localStorage.setItem("$TOKEN", response.token.access);
+              localStorage.setItem("$DATA", data.username);
               isValid &&
                 toast({
-                  position: "top-right",
+                  position: "top",
                   title: "Logado com sucesso!",
                   status: "success",
-                  duration: 4000,
+                  duration: 2000,
                   isClosable: true,
                 });
               navigate("/home");
             }
             if (response?.message == "error") {
               toast({
-                position: "top-right",
+                position: "top",
                 title: "Email ou senha incorretos.",
                 description: "Por favor, revise os dados.",
                 status: "error",
-                duration: 4000,
+                duration: 2000,
                 isClosable: true,
               });
             }
@@ -76,12 +72,17 @@ export const Login = () => {
         >
           <Stack spacing={8} mx={"auto"} maxW={"lg"} py={12} px={6}>
             <Stack align={"center"}>
-              <Heading fontSize={"4xl"}>Faça login na sua conta</Heading>
-              <BsShieldLockFill size={40} />
+              <Heading
+                fontSize={"4xl"}
+                textAlign={"center"}
+                color={"blackAlpha.800"}
+              >
+                Faça login na sua conta
+              </Heading>
+              <BsShieldLockFill size={40} color={"black"} />
             </Stack>
 
             <Box
-              h={"sm"}
               rounded={"lg"}
               bg={useColorModeValue("white", "gray.700")}
               boxShadow={"lg"}
@@ -128,32 +129,19 @@ export const Login = () => {
                     <Link color={"gray.500"}>Esqueci minha senha</Link>
                   </Stack>
                   <Button
-                    bg={"blue.400"}
+                    bg={useColorModeValue("blue.600", "gray.900")}
                     color={"white"}
+                    rounded={"md"}
                     _hover={{
-                      bg: "blue.500",
+                      boxShadow: "lg",
+                      bg: "blue.400",
+                      transition: "0.4s",
                     }}
                     type="submit"
                   >
                     Login
                   </Button>
                 </Stack>
-              </Stack>
-              <Stack
-                className="register"
-                direction={{ base: "column", sm: "row" }}
-                align={"flex-end"}
-                justify={"space-between"}
-              >
-                <Text>Ainda não possui conta?</Text>
-
-                <Link
-                  fontSize={19}
-                  color={"blue.400"}
-                  onClick={() => navigate("/register")}
-                >
-                  Cadastrar
-                </Link>
               </Stack>
             </Box>
           </Stack>

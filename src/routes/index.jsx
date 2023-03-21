@@ -3,14 +3,24 @@ import { Home } from "../pages/home";
 import { Login } from "../pages/login";
 import { Register } from "../pages/register";
 
+function ProtectedRoute(props) {
+  const token = localStorage.getItem("$TOKEN");
+
+  return token ? props.children : <Navigate to={"/login"} />;
+}
+
 export const Route = createBrowserRouter([
   {
     path: "/",
-    element: <Navigate to={"/home"}></Navigate>,
+    element: <Navigate to={"/login"}></Navigate>,
   },
   {
     path: "/home",
-    element: <Home />,
+    element: (
+      <ProtectedRoute>
+        <Home />
+      </ProtectedRoute>
+    ),
   },
   {
     path: "/login",
