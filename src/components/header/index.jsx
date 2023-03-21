@@ -55,7 +55,7 @@ export function Header() {
         <Flex
           className="logo"
           flex={{ base: 1 }}
-          justify={{ base: "center", md: "start" }}
+          justify={{ base: "start", md: "start" }}
         >
           <Text
             textAlign={useBreakpointValue({ base: "center", md: "left" })}
