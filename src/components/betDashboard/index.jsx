@@ -7,6 +7,7 @@ import {
   Text,
   useColorModeValue,
   Flex,
+  useToast,
 } from "@chakra-ui/react";
 import { handleBet } from "../../utils/bet.util";
 import { useContext } from "react";
@@ -14,6 +15,7 @@ import { ProfileContext } from "../../contexts/user.context";
 
 export const BetsDashboard = () => {
   const { bet, setBet } = useContext(ProfileContext);
+  const toast = useToast();
 
   return (
     <form
@@ -22,12 +24,20 @@ export const BetsDashboard = () => {
         const response = await handleBet();
         if (response?.message == "success") {
           setBet(response.data);
+        } else {
+          toast({
+            position: "top",
+            title: "Erro ao gerar números",
+            description: "Você precisa estar logado.",
+            status: "warning",
+            duration: 2000,
+            isClosable: true,
+          });
         }
       }}
     >
       <Flex
         className={"betContainer"}
-        w={"350px"}
         h={"350px"}
         boxShadow={"dark-lg"}
         rounded={"lg"}
