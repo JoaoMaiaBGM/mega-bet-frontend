@@ -51,51 +51,51 @@ export function Header() {
         py={{ base: 2 }}
         px={{ base: 4 }}
         align={"center"}
+        justifyContent={"space-evenly"}
       >
-        <Flex
-          className="logo"
-          flex={{ base: 1 }}
-          justify={{ base: "start", md: "start" }}
-        >
+        <Flex className="logo" justify={{ base: "start", md: "start" }}>
           <Text
             textAlign={useBreakpointValue({ base: "center", md: "left" })}
-            fontFamily={"heading"}
-            color={useColorModeValue("gray.800", "white")}
+            fontSize={"xx-large"}
+            textDecorationLine={"overline underline"}
+            fontFamily={"cursive"}
+            fontWeight={"extrabold"}
+            color={"orange.400"}
           >
-            Logo
+            Mega Bet
           </Text>
+        </Flex>
 
-          <Flex display={{ base: "none", md: "flex" }} ml={100}>
-            <Flex className="nav" justify={{ base: "center", md: "start" }}>
-              <Breadcrumb
-                spacing="8px"
-                separator={<ChevronRightIcon color="gray.500" />}
-              >
-                <BreadcrumbItem isCurrentPage>
-                  <BreadcrumbLink onClick={() => navigate("/home")}>
-                    Home
-                  </BreadcrumbLink>
-                </BreadcrumbItem>
+        <Flex className="navBtnContainer">
+          <Flex display={{ base: "none", md: "flex" }}>
+            <Breadcrumb
+              spacing="8px"
+              separator={<ChevronRightIcon color="gray.500" />}
+            >
+              <BreadcrumbItem isCurrentPage>
+                <BreadcrumbLink onClick={() => navigate("/home")}>
+                  Home
+                </BreadcrumbLink>
+              </BreadcrumbItem>
 
-                <BreadcrumbItem>
-                  <BreadcrumbLink
-                    href="https://portfolio-ecru-one-30.vercel.app/"
-                    target={"_blank"}
-                  >
-                    About
-                  </BreadcrumbLink>
-                </BreadcrumbItem>
+              <BreadcrumbItem>
+                <BreadcrumbLink
+                  href="https://portfolio-ecru-one-30.vercel.app/"
+                  target={"_blank"}
+                >
+                  About
+                </BreadcrumbLink>
+              </BreadcrumbItem>
 
-                <BreadcrumbItem>
-                  <BreadcrumbLink
-                    href="http://linkedin.com/in/joaocarlosmaia"
-                    target={"_blank"}
-                  >
-                    Contact
-                  </BreadcrumbLink>
-                </BreadcrumbItem>
-              </Breadcrumb>
-            </Flex>
+              <BreadcrumbItem>
+                <BreadcrumbLink
+                  href="http://linkedin.com/in/joaocarlosmaia"
+                  target={"_blank"}
+                >
+                  Contact
+                </BreadcrumbLink>
+              </BreadcrumbItem>
+            </Breadcrumb>
           </Flex>
         </Flex>
 
