@@ -6,6 +6,7 @@ import {
   Stack,
   useColorModeValue,
   useBreakpointValue,
+  Image,
 } from "@chakra-ui/react";
 import {
   Breadcrumb,
@@ -18,6 +19,7 @@ import { useContext, useEffect } from "react";
 import { ProfileContext } from "../../contexts/user.context";
 import { getSpecificUserToken } from "../../utils/user.util";
 import { MenuProfile } from "../menuProfile";
+import logo from "../../assets/logo-mega-bet.png";
 
 export function Header() {
   const navigate = useNavigate();
@@ -43,7 +45,7 @@ export function Header() {
     >
       <Flex
         className="navContainer"
-        w={"90%"}
+        w={"100%"}
         m={"0 auto"}
         bg={useColorModeValue("white", "gray.800")}
         color={useColorModeValue("gray.600", "white")}
@@ -54,16 +56,11 @@ export function Header() {
         justifyContent={"space-evenly"}
       >
         <Flex className="logo" justify={{ base: "start", md: "start" }}>
-          <Text
-            textAlign={useBreakpointValue({ base: "center", md: "left" })}
-            fontSize={"xx-large"}
-            textDecorationLine={"overline underline"}
-            fontFamily={"cursive"}
-            fontWeight={"extrabold"}
-            color={"orange.400"}
-          >
-            Mega Bet
-          </Text>
+          <Image
+            src={logo}
+            alt="Mega Bet's logo, with a drawing of a bird and the name of the site"
+            w={"150px"}
+          />
         </Flex>
 
         <Flex className="navBtnContainer">

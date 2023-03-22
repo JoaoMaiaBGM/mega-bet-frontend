@@ -8,22 +8,20 @@ import {
   useColorModeValue,
   VisuallyHidden,
   Flex,
+  Image,
 } from "@chakra-ui/react";
 import { FaInstagram, FaLinkedin, FaGithub } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+import logo from "../../assets/logo-mega-bet.png";
 
 const Logo = () => {
   return (
     <Flex className="logo" justify={{ base: "start", md: "start" }}>
-      <Text
-        fontSize={"xx-large"}
-        textDecorationLine={"overline underline"}
-        fontFamily={"cursive"}
-        fontWeight={"extrabold"}
-        color={"orange.400"}
-      >
-        Mega Bet
-      </Text>
+      <Image
+        src={logo}
+        alt="Mega Bet's logo, with a drawing of a bird and the name of the site"
+        w={"150px"}
+      />
     </Flex>
   );
 };
