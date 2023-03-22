@@ -11,7 +11,7 @@ function ProtectedRoute(props) {
 
 export const Route = createBrowserRouter([
   {
-    path: "/login",
+    path: "*",
     element: <Navigate to={"/login"}></Navigate>,
   },
   {
